@@ -1,7 +1,13 @@
-import { test } from "playwright/test";
-import { OpenUpgradePage } from "./pom";
+import { test } from "./base"; // Import the custom test from the base module
 
-test("Open Upgrade page", async ({ page }) => {
-    const loginPage = new OpenUpgradePage(page);
-    await loginPage.gotoUpgradePage();
+/**
+ * Test Case: Open Upgrade Page
+ * 
+ * This test case utilizes the custom fixture to navigate to the Upgrade page.
+ * The openUpgradePage fixture is instantiated and provided by the custom fixture setup.
+ */
+
+test("Open Upgrade page", async ({ openUpgradePage }) => {
+    // Navigate to the Upgrade page using the method from the OpenUpgradePage object
+    await openUpgradePage.gotoUpgradePage();
 });

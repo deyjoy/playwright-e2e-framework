@@ -53,7 +53,7 @@ export class OpenUpgradePage {
             expect.soft(selectedValue).toBe(language);
 
             // Verify the query parameter in the URL
-            const url = new URL(await this.page.url());
+            const url = new URL(this.page.url());
             const langParam = url.searchParams.get('lang');
             expect.soft(langParam).toBe(language);
         }

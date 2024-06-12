@@ -1,4 +1,4 @@
-import { Page } from "playwright/test";
+import { Page, expect } from "playwright/test";
 import { getUpgradePageUrl } from "./url-builder"; // Import the URL builder function
 
 /**
@@ -25,5 +25,9 @@ export class OpenUpgradePage {
      */
     public async gotoUpgradePage() {
         await this.page.goto(this.UPGRADE_PAGE);
+
+        // Assertion to verify the URL
+        // Adding soft assertion to keep going with the test flow and collect multiple error in a single test run
+        await expect.soft(this.page).toHaveURL(this.UPGRADE_PAGE);
     };
 }

@@ -10,4 +10,6 @@ import { test } from "../fixtures/base"; // Import the custom test from the base
 test("Open Upgrade page", async ({ openUpgradePage }) => {
     // Navigate to the Upgrade page using the method from the OpenUpgradePage object
     await openUpgradePage.gotoUpgradePage();
+    await openUpgradePage.selectLanguage();
+    await openUpgradePage.checkLoginButton();
 });

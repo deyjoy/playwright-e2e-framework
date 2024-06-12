@@ -3,7 +3,7 @@ import { getUpgradesOffersPageUrl } from "../utils/url-builder"; // Import the U
 import { extractWord } from "../utils/helpers";
 
 /**
- * OpenUpgradePage Class
+ * UpgradesOffersPage Class
  * 
  * This class represents the Upgrade page and provides methods to interact with it.
  * It uses Playwright's Page object to navigate and perform actions on the page.

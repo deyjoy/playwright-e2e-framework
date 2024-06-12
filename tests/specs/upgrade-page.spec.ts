@@ -41,15 +41,13 @@ test.describe('Upgrade Page Tests', () => {
                 await upgradesOffersPage.checkTab('Upgrades');
             });
         });
-
-        // If the test fails, capture a screenshot and save it to the test-results/screenshots/ folder
-        test.afterEach(async ({ page }, testInfo) => {
-            if (testInfo.status === 'failed') {
-                await page.screenshot({ path: `test-results/screenshots/${testInfo.title.replace(/ /g, '_')}.png` });
-            }
-            // Close the page after each test to clean up
-            await page.close();
-        });
     });
-    
+    // If the test fails, capture a screenshot and save it to the test-results/screenshots/ folder
+    test.afterEach(async ({ page }, testInfo) => {
+        if (testInfo.status === 'failed') {
+            await page.screenshot({ path: `test-results/screenshots/${testInfo.title.replace(/ /g, '_')}.png` });
+        }
+        // Close the page after each test to clean up
+        await page.close();
+    });
 });

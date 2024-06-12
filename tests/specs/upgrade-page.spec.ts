@@ -8,21 +8,34 @@ import { test } from "../fixtures/base"; // Import the custom test from the base
  */
 
 test.describe('Upgrade Page Tests', () => {
-    test.beforeEach(async ({ openUpgradePage }) => {
+    test.beforeEach(async ({ upgradesOffersPage }) => {
         await test.step('Navigate to the Upgrade page', async () => {
-            await openUpgradePage.gotoUpgradePage();
+            await upgradesOffersPage.gotoUpgradePage();
         });
     });
 
-    test('Select language on Upgrade page', async ({ openUpgradePage }) => {
-        await test.step('Select the preferred language', async () => {
-            await openUpgradePage.selectLanguage();
+    test.describe('App/Homepage Load', () => {
+        test('Select language', async ({ upgradesOffersPage }) => {
+            await upgradesOffersPage.selectLanguage();
         });
-    });
+    
+        test('Check login button and modal', async ({ upgradesOffersPage }) => {
+            await test.step('Check for the presence of the login button', async () => {
+                await upgradesOffersPage.checkLoginButton();
+            });
+            await test.step('Check for the login modal', async () => {
+                await upgradesOffersPage.checkLoginModal();
+            });
+        });
 
-    test('Check login button on Upgrade page', async ({ openUpgradePage }) => {
-        await test.step('Check the presence of the login button', async () => {
-            await openUpgradePage.checkLoginButton();
+        test('Check for tabs', async({ upgradesOffersPage }) => {
+            await test.step('Check the view of Offers tab and capture screenshot', async() => {
+                await upgradesOffersPage.checkTab('Offer');
+            });
+            await test.step('Check the view of Upgrades tab and capture screenshot', async() => {
+                await upgradesOffersPage.checkTab('Upgrades');
+            });
         });
     });
+    
 });

@@ -1,5 +1,5 @@
 import { Page, expect } from "playwright/test";
-import { getUpgradePageUrl } from "./url-builder"; // Import the URL builder function
+import { getUpgradePageUrl } from "../utils/url-builder"; // Import the URL builder function
 
 /**
  * OpenUpgradePage Class

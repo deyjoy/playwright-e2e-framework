@@ -4,5 +4,5 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 export function getUpgradePageUrl(): string {
-    return `./${process.env.UUID}`;
+    return `./${process.env.UUID}`; // Used ./ to call the baseURL from playwright.config.ts and then added UUID from .env
 }

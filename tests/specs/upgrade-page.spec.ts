@@ -1,4 +1,4 @@
-import { test } from "./base"; // Import the custom test from the base module
+import { test } from "../fixtures/base"; // Import the custom test from the base module
 
 /**
  * Test Case: Open Upgrade Page

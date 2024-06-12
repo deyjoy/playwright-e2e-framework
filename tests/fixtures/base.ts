@@ -1,5 +1,5 @@
 import { test as base } from "@playwright/test";
-import { OpenUpgradePage } from "./pom";
+import { OpenUpgradePage } from "../pages/pom";
 
 /**
  * Custom Fixtures Setup for Playwright Tests

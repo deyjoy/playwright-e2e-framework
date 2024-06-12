@@ -98,8 +98,8 @@ export class upgradesOffersPage {
         console.log(`Tab name matches with query parameter's string`);
 
         // Wait for the page to stabilize and take a screenshot
-        await this.page.waitForTimeout(500);
-        await this.page.screenshot({ path: `test-results/${tabName.toLowerCase()}-tab.png` });
-        console.log(`Capture screenshot and saving to /test-results folder`);
+        await this.page.waitForTimeout(1000);
+        await this.page.screenshot({ path: `test-results/screenshots/${tabName}_tab.png` });
+        console.log(`Capture screenshot and saving to /test-results/screenshots/ folder`);
     };
 };

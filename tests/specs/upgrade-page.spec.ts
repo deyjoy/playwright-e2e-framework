@@ -23,7 +23,7 @@ test.describe('Upgrade Page Tests', () => {
                 await upgradesOffersPage.selectLanguage();
             }
         });
-    
+
         test('Check login button and modal', async ({ upgradesOffersPage }) => {
             await test.step('Check for the presence of the login button', async () => {
                 await upgradesOffersPage.checkLoginButton();
@@ -33,18 +33,21 @@ test.describe('Upgrade Page Tests', () => {
             });
         });
 
-        test('Check for tabs', async({ upgradesOffersPage }) => {
-            await test.step('Check the view of Offers tab and capture screenshot', async() => {
+        test('Check for tabs', async ({ upgradesOffersPage }) => {
+            await test.step('Check the view of Offers tab and capture screenshot', async () => {
                 await upgradesOffersPage.checkTab('Offer');
             });
-            await test.step('Check the view of Upgrades tab and capture screenshot', async() => {
+            await test.step('Check the view of Upgrades tab and capture screenshot', async () => {
                 await upgradesOffersPage.checkTab('Upgrades');
             });
         });
     });
     test.describe('Navigations', () => {
         test('Navigate to Use Points when not logged-in', async ({ upgradesOffersPage }) => {
-           await upgradesOffersPage.selectUsePointsWithoutLoggedIn();
+            await upgradesOffersPage.selectUsePointsWithoutLoggedIn();
+        });
+        test('Navigate to Review page for bidding', async ({ upgradesOffersPage }) => {
+            await upgradesOffersPage.gotoReviewPageForBidding();
         });
     });
     test.afterEach(async ({ page }, testInfo) => {

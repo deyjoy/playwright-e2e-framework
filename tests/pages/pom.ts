@@ -112,4 +112,26 @@ export class upgradesOffersPage {
         await this.page.getByRole('button', { name: 'Cancel' }).click();
         console.log('Click on Cancel');
     };
+    public async gotoReviewPageForBidding() {
+        await expect.soft(this.page.locator('#upgrade-card-0').getByTestId('place_bid_offer_btn')).toBeVisible();
+        await this.page.locator('#upgrade-card-0').getByTestId('place_bid_offer_btn').click();
+        console.log('Click on Place Bid button of first upgrade');
+        await expect.soft(this.page.locator('#upgrade-card-0 div').filter({ hasText: 'NOTE: YOU WILL ONLY BE' }).nth(2)).toBeVisible();
+        console.log('Bidding confirmation displayed');
+        await this.page.getByTestId('select-deal-button-checkout').click();
+        console.log('Click on Continue');
+        
+        // Wait for any necessary navigation or changes
+        await this.page.waitForLoadState('networkidle');
+        await expect.soft(this.page.getByRole('heading', { name: 'Review & Confirm' })).toBeVisible();
+        console.log('Review page displayed');
+
+        // Additional check with the page url
+        const reviewPageUrl = new URL(this.page.url());
+        console.log('URL pathname contains "review"');
+        expect(reviewPageUrl.pathname).toContain('/review/');
+        const dealKind = reviewPageUrl.searchParams.get('deal_kind');
+        expect.soft(dealKind).toBe('upgrades');
+        console.log('"deal_kind" query parameter conatains "upgrade"');
+    };
 };

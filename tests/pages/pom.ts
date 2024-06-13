@@ -102,4 +102,14 @@ export class upgradesOffersPage {
         await this.page.screenshot({ path: `test-results/screenshots/${tabName}_tab.png` });
         console.log(`Capture screenshot and saving to /test-results/screenshots/ folder`);
     };
+    public async selectUsePointsWithoutLoggedIn() {
+        // This will check for the first upgrade card.
+        await expect.soft(this.page.locator('#upgrade-card-0')).toBeVisible();
+        await this.page.locator('#upgrade-card-0 div').filter({ hasText: /^Use Points$/ }).click();
+        console.log('Click on Use Points tab of the first upgrade');
+        await this.page.getByTestId('login-points-modal').locator('div').filter({ hasText: 'Sign in to Points account' }).nth(1).click();
+        console.log('Check for modal title');
+        await this.page.getByRole('button', { name: 'Cancel' }).click();
+        console.log('Click on Cancel');
+    };
 };

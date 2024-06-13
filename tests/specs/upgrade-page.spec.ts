@@ -42,7 +42,11 @@ test.describe('Upgrade Page Tests', () => {
             });
         });
     });
-    // If the test fails, capture a screenshot and save it to the test-results/screenshots/ folder
+    test.describe('Navigations', () => {
+        test('Navigate to Use Points when not logged-in', async ({ upgradesOffersPage }) => {
+           await upgradesOffersPage.selectUsePointsWithoutLoggedIn();
+        });
+    });
     test.afterEach(async ({ page }, testInfo) => {
         if (testInfo.status === 'failed') {
             await page.screenshot({ path: `test-results/screenshots/${testInfo.title.replace(/ /g, '_')}.png` });

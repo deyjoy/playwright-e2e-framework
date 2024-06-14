@@ -50,22 +50,53 @@ This guide helps you set up an end-to-end (E2E) test framework using Playwright 
    - Set the test directory name (default: `tests`).
    - Opt to install Playwright browsers.
 
-2. **Project Structure**:
+2. **Install DotEnv**:
+   Open your terminal in VS Code and run:
+   ```sh
+   npm install dotenv
+   ```
+   Follow the prompts and env.example file.
+   
+3. **Project Structure**:
    After installation, you will have:
    - `playwright.config.ts`
    - `package.json`
    - `tests/` with example tests
 
-3. **Running Tests**:
-   To verify the setup, run:
+4. **Running Tests**:
+   
    ```sh
    npx playwright test
    ```
+   Run with script
+   ```sh
+   npm run test
+   ```
+   Run with one worker (run in case test produces false positives)
+   ```sh
+   npm run test:seq
+   ```
+   Run with trace on (ref: https://playwright.dev/docs/trace-viewer) 
+   ```sh
+   npx playwright test --trace on
+   ```
+   Run a particular test by test name
+   ```sh
+   npx playwright test -g '<test name>' 
+   ```
+   Run in debug mode
+   ```sh
+   npx playwright test --debug 
+   ```
 
-4. **Viewing Test Reports**:
+5. **Viewing Test Reports**:
    Generate and view HTML reports:
    ```sh
    npx playwright show-report
+   ```
+   Run with script
+   ```sh
+   npm run report
    ```
 
 ## Using VS Code
@@ -89,3 +120,18 @@ This guide helps you set up an end-to-end (E2E) test framework using Playwright 
 
 For more details, refer to the [Playwright documentation](https://playwright.dev/docs/intro).
 
+## Thought Process Behind Test Framework Development
+
+At the beginning of developing my test framework, my focus was on establishing a solid foundation by adhering to best practices such as the Page Object Model, fixtures, page utilities, and other forms of code compartmentalization. I emphasized writing clean, modular methods and tests with appropriate comments, error handling, failure screenshots, and logging.
+
+### Initial Task: Upgrades-Offers Page
+
+For the first task, ensuring that the Upgrades-Offers page loads correctly with its basic elements was crucial. I created few test cases to verify this.
+
+### Navigations
+
+Navigations were the next priority. I demonstrated a few tab and page navigations as per the instructions.
+
+### Room Upgrades and Product Listings
+
+Finally, the room upgrades and product listings, which are the main content of the page, required detailed test cases with comprehensive use case flows. Given more time, I would have started with the page's main `div` and then created separate methods to access every useful `div` on the page. This approach would provide a robust framework to perform any kind of test on almost all elements of the page.

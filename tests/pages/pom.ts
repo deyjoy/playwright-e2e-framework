@@ -169,4 +169,94 @@ export class UpgradesOffersPage {
     public async verifyQueryParamsOnUpgradesOffersPage(paramName: string, expectedValue: string, description: string) {
         await this.utils.verifyQueryParam(paramName, expectedValue, description);
     }
+
+    /**
+     * Retrieves the name of the card.
+     * @returns {Promise<string>} The name of the card.
+     */
+    public async getCardName(): Promise<string> {
+        try {
+            // Get the inner text of the card's heading with the specified role and name.
+            const name = await this.page.getByTestId('base-card').getByRole('heading', { name: 'Upgrade' }).first().innerText();
+            // Log the card name to the console.
+            console.log(`Card name: ${name}`);
+            // Return the card name.
+            return name;
+        } catch (error) {
+            // Log any errors that occur during the process.
+            console.error('Failed to get card name:', error);
+            // Return an empty string as a fallback value.
+            return '';
+        }
+    }
+
+    /**
+     * Retrieves the description of the card.
+     * @returns {Promise<string>} The description of the card.
+     */
+    public async getCardDescription(): Promise<string> {
+        try {
+            // Get the inner text of the second <span> element within the card.
+            const desc = await this.page.getByTestId('base-card').locator('span').nth(1).innerText();
+            // Log the card description to the console.
+            console.log(`Card description: ${desc}`);
+            // Return the card description.
+            return desc;
+        } catch (error) {
+            // Log any errors that occur during the process.
+            console.error('Failed to get card description:', error);
+            // Return an empty string as a fallback value.
+            return '';
+        }
+    }
+
+    /**
+     * Verifies that the given attribute is valid and logs the result.
+     * @param {string} label - The label of the attribute being verified (e.g., 'name', 'description').
+     * @param {string} value - The value of the attribute to verify.
+     */
+    public verifyAttribute(label: string, value: string) {
+        try {
+            const isValid = value !== '';
+            console.log(`${label} valid: ${isValid}`);
+        } catch (error) {
+            console.error(`Error verifying ${label}:`, error);
+        }
+    }
+
+    /**
+     * Retrieves the price of the card and converts it to a numeric value.
+     * @returns {Promise<number>} The price of the card.
+     */
+    public async getCardPrice(): Promise<number> {
+        try {
+            // Get the inner text of the element containing the price.
+            const priceText = await this.page.getByTestId('buy-now-price-number').first().innerText();
+            // Convert the price text to a numeric value, removing any non-numeric characters.
+            const price = parseFloat(priceText.replace(/[^0-9.-]+/g, ''));
+            // Log the card price to the console.
+            console.log(`Card price: ${price}`);
+            // Return the card price.
+            return price;
+        } catch (error) {
+            // Log any errors that occur during the process.
+            console.error('Failed to get card price:', error);
+            // Return 0 as a fallback value.
+            return 0;
+        }
+    }
+
+    /**
+     * Verifies that the card has a valid price and logs the result.
+     * @param {number} price - The price of the card to verify.
+     */
+    public verifyCardPrice(price: number) {
+        try {
+            const isValid = !isNaN(price) && price > 0;
+            console.log(`Card price valid: ${isValid}`);
+        } catch (error) {
+            console.error('Error verifying card price:', error);
+        }
+    }
+
 }

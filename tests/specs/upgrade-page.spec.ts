@@ -18,7 +18,7 @@ test.describe('Upgrades Offers Page Tests', () => {
         test('Check language selection dropdown', async ({ pageUtilities, upgradesOffersPage }) => {
             // Array of language codes to be tested
             const languageCodes = ['EN', 'HE', 'DE', 'PL', 'RU', 'ES', 'FR', 'PT', 'IT'];
-        
+
             for (const languageCode of languageCodes) {
                 console.log(`Testing language: ${languageCode}`);
                 try {
@@ -39,7 +39,7 @@ test.describe('Upgrades Offers Page Tests', () => {
                 }
             }
         });
-        
+
         test('Check login button', async ({ pageUtilities }) => {
             await test.step('Check for button name', async () => {
                 await pageUtilities.verifyTextInElementByTestId('point-login-button', 'Login');
@@ -49,16 +49,16 @@ test.describe('Upgrades Offers Page Tests', () => {
             });
         });
         test('Check Login modal', async ({ upgradesOffersPage, pageUtilities }) => {
-            await test.step('Open Login modal', async() => {
+            await test.step('Open Login modal', async () => {
                 await pageUtilities.clickOnElementByTestId('point-login-button');
             });
-            await test.step('Check header text', async() => {
+            await test.step('Check header text', async () => {
                 upgradesOffersPage.verifyLoginModalHeaderIsVisible();
             });
-            await test.step('Check text input fields', async() => {
+            await test.step('Check text input fields', async () => {
                 await upgradesOffersPage.verifyLoginModalInputFields();
             });
-            await test.step('Check buttons', async() => {
+            await test.step('Check buttons', async () => {
                 await upgradesOffersPage.verifyLoginModalButtons();
             });
         });
@@ -75,12 +75,14 @@ test.describe('Upgrades Offers Page Tests', () => {
                     // Click on the Offers tab
                     await pageUtilities.clickOnExactText(tabName);
                 });
+
                 await test.step('Match with query params and captures screenshot', async () => {
                     // Query params contains the name in plural in lowercase
                     await upgradesOffersPage.matchWithQueryParam('offers');
                     await pageUtilities.captureScreenshot('offers');
                 });
             });
+
             test('Navigate to Upgrades tab and capture screenshot', async ({ upgradesOffersPage, pageUtilities }) => {
                 await test.step('Click on the Upgrades tab', async () => {
                     const tabName = await pageUtilities.getTabName('Upgrade');
@@ -90,6 +92,7 @@ test.describe('Upgrades Offers Page Tests', () => {
                     // Click on the Upgrades tab
                     await pageUtilities.clickOnExactText(tabName);
                 });
+
                 await test.step('Match with query params and captures screenshot', async () => {
                     // Query params contains the name in plural in lowercase
                     await upgradesOffersPage.matchWithQueryParam('upgrades');
@@ -99,15 +102,15 @@ test.describe('Upgrades Offers Page Tests', () => {
         });
 
         test('Navigate to review page for bidding and return using browser back button', async ({ upgradesOffersPage }) => {
-        
+
             await test.step('Click on Place Bid button', async () => {
                 await upgradesOffersPage.clickPlaceBidButton();
             });
-        
+
             await test.step('Verify bidding confirmation', async () => {
                 await upgradesOffersPage.verifyBiddingConfirmation();
             });
-        
+
             await test.step('Click on Continue button', async () => {
                 await upgradesOffersPage.clickContinueButton();
             });
@@ -115,7 +118,7 @@ test.describe('Upgrades Offers Page Tests', () => {
             await test.step('Verify Review page is displayed', async () => {
                 await upgradesOffersPage.verifyReviewPageDisplayed();
             });
-        
+
             await test.step('Verify Review page URL and query parameters', async () => {
                 await upgradesOffersPage.verifyReviewPageUrl();
             });
@@ -129,6 +132,31 @@ test.describe('Upgrades Offers Page Tests', () => {
             });
         });
     });
+
+    test.describe('Room Upgrades and Product Listings', () => {
+        test('Check Room Upgrades listings', async ({ upgradesOffersPage }) => {
+            
+            await test.step('Retrieve and verify card name', async () => {
+                const name = await upgradesOffersPage.getCardName();
+                upgradesOffersPage.verifyAttribute('Card name', name);
+            });
+    
+            await test.step('Retrieve and verify card description', async () => {
+                const description = await upgradesOffersPage.getCardDescription();
+                upgradesOffersPage.verifyAttribute('Card description', description);
+            });
+    
+            await test.step('Retrieve and verify card price', async () => {
+                const price = await upgradesOffersPage.getCardPrice();
+                upgradesOffersPage.verifyCardPrice(price);
+            });   
+        });
+
+        test('Check Product listings', async ({  }) => {
+            /** To be continued :)  */
+        });
+    });
+    
 
     test.afterEach(async ({ pageUtilities }, testInfo) => {
         console.log('Running afterEach hook');

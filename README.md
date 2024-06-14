@@ -120,3 +120,18 @@ This guide helps you set up an end-to-end (E2E) test framework using Playwright 
 
 For more details, refer to the [Playwright documentation](https://playwright.dev/docs/intro).
 
+## Thought Process Behind Test Framework Development
+
+At the beginning of developing my test framework, my focus was on establishing a solid foundation by adhering to best practices such as the Page Object Model, fixtures, page utilities, and other forms of code compartmentalization. I emphasized writing clean, modular methods and tests with appropriate comments, error handling, failure screenshots, and logging.
+
+### Initial Task: Upgrades-Offers Page
+
+For the first task, ensuring that the Upgrades-Offers page loads correctly with its basic elements was crucial. I created few test cases to verify this.
+
+### Navigations
+
+Navigations were the next priority. I demonstrated a few tab and page navigations as per the instructions.
+
+### Room Upgrades and Product Listings
+
+Finally, the room upgrades and product listings, which are the main content of the page, required detailed test cases with comprehensive use case flows. Given more time, I would have started with the page's main `div` and then created separate methods to access every useful `div` on the page. This approach would provide a robust framework to perform any kind of test on almost all elements of the page.

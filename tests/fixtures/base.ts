@@ -1,5 +1,6 @@
 import { test as base } from "@playwright/test";
-import { OpenUpgradePage } from "../pages/pom";
+import { UpgradesOffersPage } from "../pages/pom";
+import { PageUtilities } from "../utils/page-utilities";
 
 /**
  * Custom Fixtures Setup for Playwright Tests
@@ -16,17 +17,22 @@ import { OpenUpgradePage } from "../pages/pom";
 
 // Define a type for your fixtures, which can include multiple page objects
 type PageFixtures = {
-    openUpgradePage: OpenUpgradePage; // Add more pages as needed
+    upgradesOffersPage: UpgradesOffersPage; 
+    pageUtilities: PageUtilities;
 };
 
 // Extend the base test to include the custom fixtures
 export const test = base.extend<PageFixtures>({
     // Define the openUpgradePage fixture
-    openUpgradePage: async ({page}, use) => {
+    upgradesOffersPage: async ({page}, use) => {
         // Instantiate the OpenUpgradePage class and provide it to the test
-        await use(new OpenUpgradePage(page))        
+        await use(new UpgradesOffersPage(page))        
     },
-    // More fixtures will be added here later as needed
+    // Define the pageUtilities fixture
+    pageUtilities: async ({ page }, use) => {
+        const pageUtilities = new PageUtilities(page);
+        await use(pageUtilities);
+    }
 });
 
 // Export the expect function for assertions
